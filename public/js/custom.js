@@ -94,7 +94,7 @@ var tianliGPT = {
     // }
 
     try {
-      const response = await fetch('https://aizhaiyao.pastking.xyz/api/summary/?token=pastking', {
+      const response = await fetch('https://notion.xjfkkk.nyc.mn/api/summary/?token=token', {
         signal: signal,
         method: "POST",
         headers: {
