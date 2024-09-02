@@ -94,7 +94,7 @@ var tianliGPT = {
     // }
 
     try {
-      const response = await fetch('https://notion.xjfkkk.nyc.mn/api/summary/?token=token', {
+      const response = await fetch('https://notion.xjfkkk.nyc.mn/api/summary/?token=notionai', {
         signal: signal,
         method: "POST",
         headers: {
