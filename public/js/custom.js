@@ -1,4 +1,4 @@
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
     console.log("\n %c Post-Abstract-AI 开源博客文章摘要AI生成工具 %c https://github.com/zhheo/Post-Abstract-AI \n", "color: #fadfa3; background: #030307; padding:5px 0;", "background: #fadfa3; padding:5px 0;");
 
     function insertAIDiv(selector) {
@@ -180,6 +180,8 @@ window.onload = function() {
         }
     }
 
+    checkURLAndRun();
+
     // 使用 MutationObserver 监听 DOM 变化
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
@@ -198,4 +200,4 @@ window.onload = function() {
         childList: true,
         subtree: true
     });
-};
+});
