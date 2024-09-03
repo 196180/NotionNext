@@ -67,7 +67,7 @@ window.onload = function() {
 
                 for (let p of paragraphs) {
                     const filteredText = p.innerText.replace(/https?:\/\/[^\s]+/g, '');
-                    content += filteredText + ' ';
+                    content += filteredText;
                 }
 
                 const combinedText = title + ' ' + content;
@@ -129,9 +129,8 @@ window.onload = function() {
     function runTianliGPT() {
         insertAIDiv(tianliGPT_postSelector);
         const content = tianliGPT.getTitleAndContent();
-        if (content === '') {
-            console.log('TianliGPT本次提交的内容为空。');
-            return;
+        if (!content && content !== '') {
+            console.log('TianliGPT本次提交的内容为：' + content);
         }
         tianliGPT.fetchTianliGPT(content).then(summary => {
             const aiExplanationDiv = document.querySelector('.tianliGPT-explanation');
@@ -181,29 +180,5 @@ window.onload = function() {
         }
     }
 
-    function observeDOMChanges() {
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                    // 检查是否存在文章内容
-                    const contentContainer = document.querySelector(tianliGPT_postSelector);
-                    if (contentContainer) {
-                        observer.disconnect(); // 断开观察器，防止重复执行
-                        checkURLAndRun();
-                    }
-                }
-            });
-        });
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-    }
-
-    // 页面加载完成后立即执行
     checkURLAndRun();
-
-    // 监听DOM变化
-    observeDOMChanges();
 };
