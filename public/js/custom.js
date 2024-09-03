@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function() {
+window.onload = function() {
     console.log("\n %c Post-Abstract-AI 开源博客文章摘要AI生成工具 %c https://github.com/zhheo/Post-Abstract-AI \n", "color: #fadfa3; background: #030307; padding:5px 0;", "background: #fadfa3; padding:5px 0;");
 
     function insertAIDiv(selector) {
@@ -180,5 +180,22 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    checkURLAndRun();
-});
+    // 使用 MutationObserver 监听 DOM 变化
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                // 检查是否存在文章内容
+                const contentContainer = document.querySelector(tianliGPT_postSelector);
+                if (contentContainer) {
+                    observer.disconnect(); // 断开观察器，防止重复执行
+                    checkURLAndRun();
+                }
+            }
+        });
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+};
