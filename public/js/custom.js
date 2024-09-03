@@ -134,15 +134,22 @@ window.onload = function() {
         }
         tianliGPT.fetchTianliGPT(content).then(summary => {
             const aiExplanationDiv = document.querySelector('.tianliGPT-explanation');
-            // 检查 summary 类型
             if (typeof summary === 'string' && summary.trim() !== '') {
-                aiExplanationDiv.innerHTML = summary;  // 确保是字符串
+                aiExplanationDiv.innerHTML = ''; // 清空内容，准备逐字显示
+                typeWriter(aiExplanationDiv, summary, 0);
             } else if (summary && typeof summary === 'object') {
-                aiExplanationDiv.innerHTML = JSON.stringify(summary);  // 如果是对象，处理为字符串
+                aiExplanationDiv.innerHTML = JSON.stringify(summary); // 如果是对象，处理为字符串
             } else {
                 aiExplanationDiv.innerHTML = "生成摘要时出错，请稍后重试。";
             }
         });
+    }
+
+    function typeWriter(element, text, index) {
+        if (index < text.length) {
+            element.innerHTML += text.charAt(index);
+            setTimeout(() => typeWriter(element, text, index + 1), 50); // 逐字显示，每个字母间隔50ms
+        }
     }
 
     function checkURLAndRun() {
