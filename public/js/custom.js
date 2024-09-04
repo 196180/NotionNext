@@ -109,8 +109,8 @@ window.onload = function() {
                 }
     
                 const data = await response.json();
-                console.log('Ai摘要：'+data)
-                console.log('Ai摘要：'+data.summary)
+                console.log('Ai摘要：'+data);
+                console.log('Ai摘要：'+data.summary);
                 return data.summary;
             } catch (error) {
                 if (error.name === "AbortError") {
@@ -180,5 +180,22 @@ window.onload = function() {
         }
     }
 
-    checkURLAndRun();
+    // 使用 MutationObserver 监听 DOM 变化
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                // 检查是否存在文章内容
+                const contentContainer = document.querySelector(tianliGPT_postSelector);
+                if (contentContainer) {
+                    observer.disconnect(); // 断开观察器，防止重复执行
+                    checkURLAndRun();
+                }
+            }
+        });
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
 };
