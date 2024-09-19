@@ -89,7 +89,7 @@ window.onload = function() {
             signal = controller.signal;
     
             try {
-                const response = await fetch('https://noton.xjfkkk.nyc.mn/api/summary?token=notionai', {
+                const response = await fetch('https://notion.kings.us.kg/api/summary?token=notionai', {
                     signal: signal,
                     method: "POST",
                     headers: {
