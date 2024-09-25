@@ -184,7 +184,6 @@ window.onload = function() {
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                // 检查是否存在文章内容
                 const contentContainer = document.querySelector(tianliGPT_postSelector);
                 if (contentContainer) {
                     observer.disconnect(); // 断开观察器，防止重复执行
@@ -197,5 +196,10 @@ window.onload = function() {
     observer.observe(document.body, {
         childList: true,
         subtree: true
+    });
+
+    // 监听浏览器导航事件
+    window.addEventListener('popstate', function(event) {
+        checkURLAndRun();
     });
 };
