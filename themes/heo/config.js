@@ -18,8 +18,8 @@ const CONFIG = {
   HEO_HERO_BODY_REVERSE: false,
 
   // 英雄区(首页顶部大卡)
-  HEO_HERO_TITLE_1: '分享技能',
-  HEO_HERO_TITLE_2: '与思维认知',
+  HEO_HERO_TITLE_1: '东隅已逝',
+  HEO_HERO_TITLE_2: '桑榆非晚',
   HEO_HERO_TITLE_3: 'blog.xjfkkk.top',
   HEO_HERO_TITLE_4: '我的主页',
   HEO_HERO_TITLE_5: '欢迎来访',
